@@ -165,4 +165,4 @@ def test_reportar_medida(sectorial_client):
 
     res = sectorial_client.post("/api/medida_reportada/", data, format="json")
     assert res.status_code == 201
-    assert res.data["valor"] == "123.45"
+    assert res.data["valor"] == "123.455"
