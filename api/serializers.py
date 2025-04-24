@@ -9,7 +9,7 @@ class OrganismoSectorialSerializer(serializers.ModelSerializer):
         model = OrganismoSectorial
         fields = '__all__'
     
-    def validate_nombre(self, value):
+    def validate_nombre(self, value): #
         """
         Validar que el nombre del organismo sectorial no esté vacío y tenga un formato adecuado.
         """
