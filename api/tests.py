@@ -135,7 +135,7 @@ def test_create_medida(admin_client):
 
     res = admin_client.post("/api/medidas/", data, format="json")
     assert res.status_code == 201
-    assert res.data["nombre_corto"] == "Medida XYXdd"
+    assert res.data["nombre_corto"] == "Medida X"
 
 # ------------------------ MEDIDA REPORTADA ------------------------
 
