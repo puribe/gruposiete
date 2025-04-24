@@ -32,9 +32,13 @@ SECRET_KEY = os.environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    os.environ.get("PRODUCTION_HOST"),
+    "localhost",
+    "127.0.0.1"
+]
 
 
 # Application definition
@@ -51,6 +55,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "app.apps.AppConfig",
     "api.apps.ApiConfig",
+    'whitenoise.runserver_nostatic',
+
 ]
 
 MIDDLEWARE = [
@@ -203,3 +209,14 @@ LOGGING = {
         },
     },
 }
+
+
+STATIC_URL = "/static/"
+# This production code might break development mode, so we check whether we're in DEBUG mode
+if (
+    not DEBUG
+):  # Tell Django to copy static assets into a path called staticfiles (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
