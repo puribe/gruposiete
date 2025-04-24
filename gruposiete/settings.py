@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "app.apps.AppConfig",
     "api.apps.ApiConfig",
-    'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic',  
 
 ]
 

@@ -34,6 +34,16 @@ serializer_class = xSerializer #Conecta la vista con el serializer para que los 
     destroy=extend_schema(description='Elimina un Organismo Sectorial',summary='Elimina un Organismo'),
 )
 class OrganismoSectorialViewSet(viewsets.ModelViewSet):
+    """
+    API para gestionar organismos sectoriales. Permite crear, listar, actualizar y eliminar organismos.
+    
+    Metodos HTTP soportados:
+    - GET: Listar todos los organismos o uno específico
+    - POST: Crear un nuevo organismo
+    - PUT: Actualizar un organismo existente
+    - DELETE: Eliminar un organismo
+
+    """    
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
     http_method_names = ['post','put','get','delete']
@@ -59,6 +69,16 @@ class OrganismoSectorialViewSet(viewsets.ModelViewSet):
     destroy=extend_schema(description='Elimina un Plan',summary='Elimina un Plan'),
 )
 class PlanViewSet(viewsets.ModelViewSet):
+    """
+    API para gestionar planes. Permite crear, listar, actualizar y eliminar planes.
+    
+    Metodos HTTP soportados:
+    - GET: Listar todos los planes o uno específico
+    - POST: Crear un nuevo plan
+    - PUT: Actualizar un plan existente
+    - DELETE: Eliminar un plan
+
+    """
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     permission_classes = [IsAdminUser]
     http_method_names = ['post','put','get','delete']
@@ -74,6 +94,16 @@ class PlanViewSet(viewsets.ModelViewSet):
     destroy=extend_schema(description='Elimina una Medida',summary='Elimina una Medida'),
 )
 class MedidaViewSet(viewsets.ModelViewSet):
+    """
+    API para gestionar medidad. Permite crear, listar, actualizar y eliminar medidas.
+    
+    Metodos HTTP soportados:
+    - GET: Listar todas las medidas o una específica
+    - POST: Crear una nueva medida
+    - PUT: Actualizar una medida existente
+    - DELETE: Eliminar una medida
+
+    """
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     permission_classes = [IsAdminUser]
     http_method_names = ['post','put','get','delete']
@@ -88,6 +118,16 @@ class MedidaViewSet(viewsets.ModelViewSet):
     destroy=extend_schema(description='Elimina una Verificacion',summary='Elimina una Verificacion'),
 )
 class VerificacionViewSet(viewsets.ModelViewSet):
+    """
+    API para gestionar verificaciones. Permite crear, listar, actualizar y eliminar verificaciones.
+    
+    Metodos HTTP soportados:
+    - GET: Listar todas las verificaciones o una específica
+    - POST: Crear una nueva verificacion
+    - PUT: Actualizar una verificacion existente
+    - DELETE: Eliminar una verificacion
+
+    """
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     permission_classes = [IsAdminUser]
     http_method_names = ['post','put','get','delete']
@@ -103,6 +143,16 @@ class VerificacionViewSet(viewsets.ModelViewSet):
     destroy=extend_schema(description='Elimina un Tipo de Medida',summary='Elimina un Tipo de Medida'),
 )
 class TipoMedidaViewSet(viewsets.ModelViewSet):
+    """
+    API para gestionar tipos de medidas. Permite crear, listar, actualizar y eliminar medidas. 
+    
+    Metodos HTTP soportados:
+    - GET: Listar todos los tipos de medidas o uno específico
+    - POST: Crear un nuevo tipo de medida
+    - PUT: Actualizar un tipo de medida existente
+    - DELETE: Eliminar un tipo de medida
+
+    """
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     permission_classes = [IsAdminUser]
     http_method_names = ['post','put','get','delete']
@@ -122,6 +172,16 @@ class TipoMedidaViewSet(viewsets.ModelViewSet):
 
 
 class MedidaReportadaViewSet(viewsets.ModelViewSet):
+    """
+    API para gestionar medidas reportadas. Permite crear, listar, actualizar y eliminar medidas reportadas.
+    
+    metodos HTTP soportados:
+    - GET: Listar todas las medidas reportadas o una específica
+    - POST: Crear una nueva medida reportada
+    - PUT: Actualizar una medida reportada existente
+    - DELETE: Eliminar una medida reportada
+    
+    """
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     permission_classes = [IsOrganizacionSectorialOrAdmin]
     http_method_names = ['post','put','get','delete']

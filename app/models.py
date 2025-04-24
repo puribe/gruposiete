@@ -47,6 +47,17 @@ class ModeloBase(models.Model):
         abstract = True  # Indica que esta clase es abstracta
 
 class TipoMedida(ModeloBase):
+    """
+    Representa un tipo de medida en el sistema. Puede ser regulatoria o no regulatoria.
+    
+    Atributos:
+    - created_at: Fecha y hora de creación del registro
+    - updated_at: Fecha y hora de la última actualización
+    - created_by: Usuario que creó el registro
+    - updated_by: Usuario que realizó la última modificación
+    - nombre: Nombre del tipo de medida
+    
+    """
     nombre = models.CharField(max_length=100)
 
     class Meta:
@@ -57,6 +68,19 @@ class TipoMedida(ModeloBase):
         return f"{self.nombre}"
 
 class Verificacion(ModeloBase):
+    """
+    Representa una verificación asociada a una medida. Contiene información sobre la
+    verificación realizada.
+    
+    Atributos:
+    - created_at: Fecha y hora de creación del registro
+    - updated_at: Fecha y hora de la última actualización
+    - created_by: Usuario que creó el registro
+    - updated_by: Usuario que realizó la última modificación
+    - nombre: Nombre de la verificación
+    - verificacion: Texto descriptivo de la verificación
+    
+    """
     nombre = models.CharField(max_length=100, blank=True, null=True)
     verificacion = models.TextField(max_length=2000)
 
@@ -78,6 +102,27 @@ FRECUENCIA = [
 ]
 
 class Medida(ModeloBase):
+    """
+    Representa una medida asociada a un plan. Contiene información sobre la medida, su
+    frecuencia de reporte y el organismo sectorial responsable.
+    
+    Atributos:
+    - created_at: Fecha y hora de creación del registro
+    - updated_at: Fecha y hora de la última actualización
+    - created_by: Usuario que creó el registro
+    - updated_by: Usuario que realizó la última modificación
+    - referencia_pda: Referencia de la PDA asociada a la medida
+    - nombre_corto: Nombre corto de la medida 
+    - indicador: Indicador asociado a la medida
+    - formula_de_calculo: Fórmula de cálculo asociada a la medida
+    - frecuencia_reporte: Frecuencia de reporte de la medida (Anual, Única, Cada 5 años)
+    - tipo_de_dato_a_validar: Tipo de dato a validar (opcional)
+    - tipo_medida: Tipo de medida (regulatoria o no regulatoria)
+    - plan: Plan al que está asociada la medida
+    - organismo_sectorial: Organismo sectorial responsable de la medida
+    - verificaciones: Verificaciones asociadas a la medida   
+    
+    """
     referencia_pda = models.CharField(max_length=100)
     nombre_corto = models.CharField(max_length=100) 
     indicador = models.TextField(max_length=2000) 
@@ -105,6 +150,17 @@ class VerificacionMedida(models.Model):
         verbose_name_plural = 'Relación Verificación - medida'
 
 class OrganismoSectorial(ModeloBase):
+    """
+    Representa un organismo sectorial responsable de la implementación de medidas.
+    
+    Atributos:
+    - created_at: Fecha y hora de creación del registro
+    - updated_at: Fecha y hora de la última actualización
+    - created_by: Usuario que creó el registro
+    - updated_by: Usuario que realizó la última modificación
+    - nombre: Nombre del organismo sectorial  
+    
+    """    
     nombre = models.CharField(max_length=255)
 
     class Meta:
@@ -115,6 +171,22 @@ class OrganismoSectorial(ModeloBase):
         return f"{self.nombre}"
     
 class Plan(ModeloBase):
+    """
+    Representa un plan asociado a un organismo sectorial. Contiene información sobre
+    el plan, su estado de avance y los organismos sectoriales involucrados.
+    
+    Atributos:
+    - created_at: Fecha y hora de creación del registro
+    - updated_at: Fecha y hora de la última actualización
+    - created_by: Usuario que creó el registro
+    - updated_by: Usuario que realizó la última modificación
+    - nombre: Nombre del plan
+    - inicio: Fecha de inicio del plan
+    - termino: Fecha de término del plan
+    - estado_avance: Estado de avance del plan (opcional)
+    - organismos: Relación muchos a muchos con los organismos sectoriales 
+    
+    """    
     nombre = models.CharField(max_length=255)
     inicio = models.DateTimeField(null=True)
     termino = models.DateTimeField(null=True)
@@ -146,6 +218,22 @@ ESTADO_VERIFICACION = [
 ('RECHAZADA', 'Rechazada'),
 ]
 class MedidaReportada(ModeloBase):
+    """
+    Representa una medida reportada por un organismo sectorial. Contiene información
+    sobre la medida reportada, su estado y el organismo sectorial responsable.
+    
+    Atributos:
+    - created_at: Fecha y hora de creación del registro
+    - updated_at: Fecha y hora de la última actualización
+    - created_by: Usuario que creó el registro
+    - updated_by: Usuario que realizó la última modificación
+    - organismo_sectorial: Organismo sectorial responsable de la medida reportada
+    - medida: Medida asociada a la medida reportada
+    - valor: Valor reportado de la medida
+    - estado: Estado de la verificación de la medida reportada (pendiente, verificada, rechazada)
+    
+    
+    """    
     organismo_sectorial = models.ForeignKey('OrganismoSectorial', models.CASCADE, help_text="Id del Organismo Sectorial que está informando.")
     medida = models.ForeignKey('Medida', models.CASCADE, help_text="Id de la medida a resportar.")
     valor = models.TextField(max_length=50, help_text="Resultado de la medida aplicada.")  
