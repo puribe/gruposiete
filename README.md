@@ -18,7 +18,7 @@
 
    ```bash
    # Clonamos el repositorio
-   git clone https://github.com/mayerlynyrs/gruposiete.git
+   git clone https://github.com/puribe/gruposiete
    # Acceder a la carpeta
    cd gruposiete
    # Crear y activar entorno virtual
@@ -89,6 +89,9 @@
          (Ejemplo: Token 123456789abcdef123456789abcdef)
          - Add to: Header
       5. Presionar "Send" y verificar la respuesta.
+
+   ## Proyecto publicado y en producción
+   - https://gruposiete-er2w.onrender.com/api/
 
    ## Documentación
 
