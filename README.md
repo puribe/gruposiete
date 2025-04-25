@@ -95,7 +95,7 @@
 
    ## Documentación
 
-   - [Diagrama Modelo de Datos](documentation/img/modelo_datos_v1.1.jpg)
+   - [Diagrama Modelo de Datos](documentation/img/grupo7-modelo_de_datos_public_v3.png)
    - La documentación de los endpoints fue generada con Swagger. Para acceder a ésta, la podemos encontrar en distintas fuentes:
 
       - [Swagger local](http://127.0.0.1:8000/api/docs/) (debe estar corriendo el proyecto)
